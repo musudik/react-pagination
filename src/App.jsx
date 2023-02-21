@@ -14,20 +14,24 @@ function App() {
     const [recordsPerPage] = useState(10);
 
     useEffect(() => {
+        //call to fetch the absences json data
         axios.get('absences.json')
             .then(res => {
-                absences  = res.data.payload;
-                setData(res.data.payload);
                 setLoading(true);
+
+                //call to fetch the members json data
                 axios.get('members.json')
                     .then(res1 => {
-                        members = res1.data.payload;
                         setLoading(false);
+
+                        //filter both the responses with matching userId and fetch the userName
+                        //and construct a json element on absences as memberName to hold the name
                         try {
                             const populatedAbsences = res.data.payload.map(absence => {
                               const member = res1.data.payload.find(member => member.userId === absence.userId);
                               return { ...absence, memberName: member?.name };
                             });
+                            //set the result json to data constant
                             setData(populatedAbsences);
                             console.log('data -- : ',data)
                             } catch(err) {
@@ -50,8 +54,7 @@ function App() {
     return (
         <div className='container mt-5'>
             <h2> Simple Pagination Example in React </h2>
-            <Records data={currentRecords}
-                     members={members} />
+            <Records data={currentRecords}/>
             <Pagination
                 nPages={nPages}
                 currentPage={currentPage}

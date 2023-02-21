@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const Records = ({data, members}) => {
+const Records = ({data}) => {
   return (
     <table className="table" border="1px solid!">
         <thead>
@@ -20,7 +20,6 @@ const Records = ({data, members}) => {
             .map(item => (
                 <tr>
                     <td>{item.memberName}</td>
-
                     <td>{item.type}</td>
                     <td>{item.startDate}</td>
                     <td>{item.endDate}</td>
