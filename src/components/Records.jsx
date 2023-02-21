@@ -1,9 +1,9 @@
 import React from 'react'
 
 
-const Records = ({data}) => {
+const Records = ({data, members}) => {
   return (
-    <table className="table">
+    <table className="table" border="1px solid!">
         <thead>
             <tr>
                 <th scope='col'>Member Name</th>
@@ -16,9 +16,11 @@ const Records = ({data}) => {
             </tr>
         </thead>
         <tbody>
-            {data.map(item => (
+            {data
+            .map(item => (
                 <tr>
-                    <td>{item.userId}</td>
+                    <td>{item.memberName}</td>
+
                     <td>{item.type}</td>
                     <td>{item.startDate}</td>
                     <td>{item.endDate}</td>
@@ -32,4 +34,6 @@ const Records = ({data}) => {
   ) 
 }
 
-export default Records  
+
+export default Records;
+
